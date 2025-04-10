@@ -9,6 +9,9 @@ jobs:
       - run:
           name: Run tests
           command: gotestsum --junitfile junit.xml
+      - store_artifacts:
+          path: junit.xml
+          destination: junit.xml
       - store_test_results:
           path: junit.xml
   build-go-executables:
