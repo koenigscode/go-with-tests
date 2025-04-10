@@ -8,12 +8,14 @@ jobs:
       - checkout
       - run:
           name: Run tests
-          command: gotestsum --junitfile junit.xml
+          command: |
+            mkdir -p test-results
+            gotestsum --junitfile test-results/junit.xml
       - store_artifacts:
-          path: junit.xml
-          destination: junit.xml
+          path: test-results
+          destination: test-results
       - store_test_results:
-          path: junit.xml
+          path: test-results
   build-go-executables:
     # Build go executables and store them as artifacts
     docker:
